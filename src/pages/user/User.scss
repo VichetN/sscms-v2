@@ -1,0 +1,33 @@
+@import '../../theme.scss';
+
+.ssc_user_container{
+
+    .ssc_search_paper{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .ssc_create_btn{
+        width: 100%;
+        height: 100%;
+    }
+    
+}
+
+.ssc_container{
+
+    .ssc_data_table_container{
+        height: 100%;
+        width: 100%;
+        padding: 0px;
+
+        @include mobile {
+            height: 95%;
+        }
+    }
+
+    .row-class{
+        background-color: #ddd;
+    }
+    
+}

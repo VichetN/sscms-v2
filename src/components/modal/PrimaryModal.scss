@@ -1,0 +1,15 @@
+@import '../../theme.scss';
+
+.ssc_primary_modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 24;
+
+    @include mobile{
+        width: 80%;
+    }
+}

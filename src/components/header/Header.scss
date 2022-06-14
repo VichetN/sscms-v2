@@ -1,0 +1,39 @@
+@import '../../theme.scss';
+
+.ssc_header {
+    width: 100%;
+
+    .ssc_header_content {
+
+        padding: 20px;
+
+        .ssc_header_content_left{
+            
+        }
+
+        .btn-toggle {
+            cursor: pointer;
+            width: 50px!important;
+            height: 50px;
+            background: #353535;
+            color: #fff;
+            text-align: center;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            display: none;
+
+            @include mobile {
+                display: flex;
+            }
+        }
+    }
+
+
+    .ssc_header_divider {
+        margin-top: 10px;
+    }
+
+}

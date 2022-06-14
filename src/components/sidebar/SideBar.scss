@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+$sidebar-bg-color: #0c1e35;
+$submenu-bg-color: rgba(255, 255, 255, 0.05);
+$submenu-bg-color-collapsed: rgba(#0c1e35, 0.95);
+$sidebar-color: #b3b8d4;
+$highlight-color: #dee2ec;
+$icon-bg-color: rgba(255, 255, 255, 0.05);
+$icon-size: 35px;
+
+@import '~react-pro-sidebar/dist/scss/styles.scss';
+
+.active_tab {
+    // border-right: 5px solid #b3b8d4;
+
+    .pro-inner-item {
+        padding: 8px 25px 8px 10px !important;
+        margin: 0px 10px;
+        background-color: #546171;
+        font-size: 18px;
+        border-radius: 10px;
+        transition: all 0.7s;
+
+        .pro-icon-wrapper {
+            background-color: #0c1e35 !important;
+            transform: rotate(-370deg);
+            transition: all 0.7s;
+        }
+    }
+}
+
+.sidebar_footer {
+    
+    .logout_footer {
+
+        &:hover {
+            .pro-inner-item {
+                padding: 8px 25px 8px 10px !important;
+                margin: 0px 10px;
+                background-color: #715459;
+                font-size: 18px;
+                border-radius: 10px;
+                transition: all 0.7s;
+
+
+                .pro-icon-wrapper {
+                    background-color: #0c1e35 !important;
+                    transform: rotate(-360deg);
+                    transition: all 0.7s;
+                }
+
+            }
+        }
+
+
+    }
+}
