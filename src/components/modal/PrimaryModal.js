@@ -1,33 +1,47 @@
-import { Box, Modal, Typography } from '@mui/material'
+import { Box, Dialog, DialogContent, DialogTitle, Modal, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 
 //style
 import './PrimaryModal.scss';
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 600,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+// const style = {
+//     position: 'absolute',
+//     top: '50%',
+//     left: '50%',
+//     transform: 'translate(-50%, -50%)',
+//     width: 600,
+//     bgcolor: 'background.paper',
+//     border: '2px solid #000',
+//     boxShadow: 24,
+//     p: 4,
+// };
 
-function PrimaryModal({setOpen,open,children}) {
+function PrimaryModal({ title, setOpen, open, children }) {
+
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+    const handleClose = () => {
+        setOpen(false);
+      };
+
     return (
-        <Modal
+        <Dialog
+            fullScreen={fullScreen}
             open={open}
-            onClose={()=> setOpen(false)}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+            onClose={handleClose}
+            className="ssc_primary_dialog"
+            aria-labelledby="responsive-dialog-title"
         >
-            <Box sx={{bgcolor:'background.paper',p:4}} className='ssc_primary_modal'>
+            
+            <DialogTitle id="responsive-dialog-title">
+                {title}
+            </DialogTitle>
+            <DialogContent>
                 {children}
-            </Box>
-        </Modal>
+            </DialogContent>
+            
+        </Dialog>
     )
 }
 

@@ -1,2 +1,67 @@
 @import '../../theme.scss';
 
+.action_icons {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.ssc_calendar_container {
+    .fc {
+
+        height: 100vh;
+
+        .fc-loadingContent-button{
+            width: 30px;
+            height: 30px;
+            background-color: #fff;
+            border: none;
+        }
+
+        .fc-daygrid-day-frame {
+            cursor: pointer;
+        }
+
+        .fc-daygrid-event {
+            cursor: pointer;
+        }
+
+        .fc-day-other {
+            background-color: #ccc;
+        }
+
+        .fc-popover{
+            z-index: 99;
+        }
+
+        .ssc_schedule_badge{
+           background-color: $badgeColor;
+           padding: 3px;
+           color: #FFF;
+           border-radius: 10px;
+        }
+
+        .ssc_event_content{
+            
+            .ssc_event_title{
+                @include mobile{
+                    font-size: 9px;
+                }
+                @include tablet{
+                    font-size: 12px;
+                }
+            }
+
+            @include mobile{
+                font-size: 10px;
+            }
+        }
+
+        // table tbody tr td {
+        //     height: 100px;
+        // }
+    }
+
+
+}

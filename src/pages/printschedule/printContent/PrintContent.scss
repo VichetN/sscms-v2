@@ -1,0 +1,39 @@
+@import '../../../theme.scss';
+
+.ssc_print_schedule{
+    padding:20px;
+    border: 1px solid #ddd;
+
+    overflow-x: auto;
+
+    @include printMedia{
+        padding:30px;
+        border: none;
+    }
+
+    .print_schedule_table{
+        width: 100%;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        font-size: 12px;
+        
+        thead{
+            background-color: #ddd;
+            
+            th{
+                padding:5px;
+                border: 1px solid #000;
+            }
+        }
+
+        tbody{
+
+            td{
+                padding: 5px;
+                text-align: center;
+                border: 1px solid #000;
+            }
+        }
+
+    }
+}

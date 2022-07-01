@@ -1,56 +1,265 @@
-import { Box, Button, Container, Divider, Grid, Icon, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from '@mui/material'
+import { Box, Button, Divider, Grid, IconButton, InputBase, Paper } from '@mui/material'
 import React, { useState } from 'react'
 import { PageTitle } from '../../components';
 import { BsPlusCircleFill } from 'react-icons/bs'
 import { VscSettings } from 'react-icons/vsc'
 import { ImSearch } from 'react-icons/im'
-import { DataGrid } from '@mui/x-data-grid/DataGrid';
+import { Cell, Column, HeaderCell, Table } from "rsuite-table";
 
 //style
 import './User.scss';
 import CreateUser from './modal/CreateUser';
-import UserColumn from './tableColumn/UserColumn';
+
+
+const d = [{
+    "id": 1,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/justinrob/128.jpg",
+    "city": "New Amieshire",
+    "email": "Leora13@yahoo.com",
+    "firstName": "Ernest Schuppe SchuppeSchuppeSchuppeSchuppeSchuppeSchuppe Schuppe",
+    "lastName": "Schuppe",
+    "street": "Ratke Port",
+    "zipCode": "17026-3154",
+    "date": "2016-09-23T07:57:40.195Z",
+    "bs": "global drive functionalities",
+    "catchPhrase": "Intuitive impactful software",
+    "companyName": "Lebsack - Nicolas",
+    "words": "saepe et omnis",
+    "sentence": "Quos aut sunt id nihil qui.",
+    "stars": 820,
+    "followers": 70
+}
+    ,
+{
+    "id": 2,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/thaisselenator_/128.jpg",
+    "city": "New Gust",
+    "email": "Mose_Gerhold51@yahoo.com",
+    "firstName": "Janis",
+    "lastName": "Vandervort",
+    "street": "Dickinson Keys",
+    "zipCode": "43767",
+    "date": "2017-03-06T09:59:12.551Z",
+    "bs": "e-business maximize bandwidth",
+    "catchPhrase": "De-engineered discrete secured line",
+    "companyName": "Glover - Hermiston",
+    "words": "deleniti dolor nihil",
+    "sentence": "Illo quidem libero corporis laborum.",
+    "stars": 1200,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+},
+{
+    "id": 3,
+    "avartar": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
+    "city": "Lefflerstad",
+    "email": "Frieda.Sauer61@gmail.com",
+    "firstName": "Makenzie",
+    "lastName": "Bode",
+    "street": "Legros Divide",
+    "zipCode": "54812",
+    "date": "2016-12-08T13:44:26.557Z",
+    "bs": "plug-and-play e-enable content",
+    "catchPhrase": "Ergonomic 6th generation challenge",
+    "companyName": "Williamson - Kassulke",
+    "words": "quidem earum magnam",
+    "sentence": "Nam qui perferendis ut rem vitae saepe.",
+    "stars": 610,
+    "followers": 170
+}
+
+]
+
 
 function User() {
 
     const [openAdd, setOpenAdd] = useState(false)
-
-    const rows = [
-        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-        { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-        { id: 10, lastName: 'Snow', firstName: 'Jon', age: 35 },
-        { id: 12, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-        { id: 13, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-        { id: 14, lastName: 'Stark', firstName: 'Arya', age: 16 },
-        { id: 15, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-        { id: 16, lastName: 'Melisandre', firstName: null, age: 150 },
-        { id: 17, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-        { id: 18, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-        { id: 19, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-        { id: 20, lastName: 'Snow', firstName: 'Jon', age: 35 },
-        { id: 21, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-        { id: 23, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-        { id: 24, lastName: 'Stark', firstName: 'Arya', age: 16 },
-        { id: 25, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-        { id: 26, lastName: 'Melisandre', firstName: null, age: 150 },
-        { id: 27, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-        { id: 28, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-        { id: 29, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    ];
 
     return (
         <>
 
             <CreateUser open={openAdd} setOpen={setOpenAdd} />
 
-            <Box className='ssc_user_container' style={{padding:25}}>
+            <Box className='ssc_user_container' style={{ padding: 25 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4} md={4} lg={7}>
                         <PageTitle title={'User'} />
@@ -82,73 +291,77 @@ function User() {
                         <Button
                             variant='contained'
                             disableElevation
-                            size='large'
+                            size='small'
                             className='ssc_create_btn'
+                            startIcon={<BsPlusCircleFill />}
                             onClick={() => setOpenAdd(true)}
                         >
-                            <BsPlusCircleFill />&nbsp;&nbsp;Create
+                            Create
                         </Button>
+                    </Grid>
+
+                    <Grid item xs={12} sm={12} md={12} lg={12} className="ssc_container">
+                        <Box className="ssc_data_table_container" >
+                            <Table data={d} fillHeight bordered cellBordered hover onSortColumn={(key, type) => console.log(key, type)}>
+                                <Column width={100} >
+                                    <HeaderCell>ID</HeaderCell>
+                                    <Cell dataKey="id" />
+                                </Column>
+                                <Column width={150} >
+                                    <HeaderCell>First Name</HeaderCell>
+                                    <Cell dataKey="firstName" />
+                                </Column>
+                                <Column width={150} >
+                                    <HeaderCell>Last Name</HeaderCell>
+                                    <Cell dataKey="lastName" />
+                                </Column>
+                                <Column width={200} sortable>
+                                    <HeaderCell>City</HeaderCell>
+                                    <Cell dataKey="city" />
+                                </Column>
+                                <Column width={300} sortable={true} >
+                                    <HeaderCell>Street</HeaderCell>
+                                    <Cell dataKey="street" />
+                                </Column>
+                                <Column width={300} >
+                                    <HeaderCell>Company Name</HeaderCell>
+                                    <Cell dataKey="companyName" />
+                                </Column>
+                                <Column width={200} >
+                                    <HeaderCell>Email</HeaderCell>
+                                    <Cell dataKey="email" />
+                                </Column>
+                                <Column width={120} fixed="right">
+                                    <HeaderCell>Action</HeaderCell>
+                                    <Cell>
+                                        {(rowData) => {
+                                            function handleAction() {
+                                                alert(`id:${rowData.id}`);
+                                            }
+                                            return (
+                                                <span>
+                                                    <b onClick={handleAction}>
+                                                        {" "}
+                                                        <b>Edit</b>{" "}
+                                                    </b>{" "}
+                                                    |
+                                                    <b onClick={handleAction}>
+                                                        {" "}
+                                                        <b>Remove</b>{" "}
+                                                    </b>
+                                                </span>
+                                            );
+                                        }}
+                                    </Cell>
+                                </Column>
+                            </Table>
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
-            <Container maxWidth="xl" className={'ssc_container'}>
+            {/* <Container maxWidth="xl" className={'ssc_container'}>
 
-                <Box className="ssc_data_table_container" >
-                    {/* <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Dessert (100g serving)</TableCell>
-                                <TableCell align="right">Calories</TableCell>
-                                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row) => (
-                                <TableRow
-                                    key={row.name}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.calories}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
-                                    <TableCell align="right">{row.protein}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer> */}
-
-                    <DataGrid
-                        rows={rows}
-                        rowHeight={40}
-                        pageSize={50}
-                        headerHeight={50}
-                        rowsPerPageOptions={[5]}
-                        columns={UserColumn().map(column => ({
-                            ...column,
-                            cellClassName: ({ row }) => row?.id === 2 ? 'row-class' : '',
-                        }))}
-                        disableColumnFilter
-                        disableColumnMenu
-                        // disableColumnSelector
-                        disableSelectionOnClick
-                        // disableDensitySelector
-                        sortingMode='server'
-                        hideFooter
-                        onSortModelChange={(model, detail) => {
-                            console.log(detail, model)
-                        }}
-                    // loading={true}
-                    checkboxSelection
-                    />
-                </Box>
-            </Container>
+            </Container> */}
         </>
     )
 }

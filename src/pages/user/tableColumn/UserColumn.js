@@ -5,23 +5,23 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 function UserColumn() {
 
     let array = [
-        { field: 'id', headerName: 'ID', flex: 1 },
-        { field: 'firstName', headerName: 'First name', flex: 1 },
-        { field: 'lastName', headerName: 'Last name', flex: 1 },
+        { field: 'id', headerName: 'ID',width:100 },
+        { field: 'firstName', headerName: 'First name',width:200  },
+        { field: 'lastName', headerName: 'Last name', width:200 },
         {
             field: 'age',
             headerName: 'Age',
             // type: 'number',
-            flex: 1,
-            align:'left'
+            align:'left',
+            width:100
         },
         {
             field: 'fullName',
             headerName: 'Full name',
             description: 'This column has a value getter and is not sortable.',
             sortable: false,
-            flex: 1,
             filter: false,
+            width:400,
             valueGetter: (params) =>
                 `${params.row.firstName || ''} ${params.row.lastName || ''}`,
         },
@@ -31,7 +31,6 @@ function UserColumn() {
             headerName: 'Action',
             sortable: false,
             align:'center',
-            // flex: 1,
             width:100,
             filter: false,
             renderCell: (params) => {

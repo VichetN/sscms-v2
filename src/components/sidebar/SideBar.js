@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader, SubMenu } from 'react-pro-sidebar'
+import { Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeader } from 'react-pro-sidebar'
 import { RiDashboardFill, RiLogoutCircleRFill, RiUserSettingsFill } from 'react-icons/ri'
 import {AiFillSchedule} from 'react-icons/ai'
 import { useLocation, useNavigate } from "react-router-dom";
@@ -28,9 +28,10 @@ function SideBar({ handleToggleSidebar, toggled }) {
             <ProSidebar
                 breakPoint="md"
                 // collapsed={true}
+                style={{height:'none'}}
                 toggled={toggled}
                 onToggle={handleToggleSidebar}
-                // style={{height:'auto'}}
+                className="custome-sidebar"
             >
                 <SidebarHeader>
                     <div style={{ fontSize: 30, textAlign: 'center' }}>
@@ -41,15 +42,16 @@ function SideBar({ handleToggleSidebar, toggled }) {
 
                 <SidebarContent>
                     <Menu iconShape="circle">
-                        <MenuItem onClick={() => handleNavigate('/')} className={keyMenu(urlPath) === '' ? 'active_tab' : ''} icon={<RiDashboardFill />}>
+                        {/* <MenuItem onClick={() => handleNavigate('/')} className={keyMenu(urlPath) === '' ? 'active_tab' : ''} icon={<RiDashboardFill />}>
                             Dashboard
-                        </MenuItem>
+                        </MenuItem> */}
                         <MenuItem onClick={() => handleNavigate('/schedule')} className={keyMenu(urlPath) === 'schedule' ? 'active_tab' : ''} icon={<AiFillSchedule />}>
                             Schedule
                         </MenuItem>
-                        <MenuItem onClick={() => handleNavigate('/user')} className={keyMenu(urlPath) === 'user' ? 'active_tab' : ''} icon={<RiUserSettingsFill />}>
+                        {/* <MenuItem onClick={() => handleNavigate('/user')} className={keyMenu(urlPath) === 'user' ? 'active_tab' : ''} icon={<RiUserSettingsFill />}>
                             User
-                        </MenuItem>
+                        </MenuItem> */}
+
                         {/* <SubMenu title="Components" icon={<FaHeart />}>
                         <MenuItem>Component 1</MenuItem>
                         <MenuItem>Component 2</MenuItem>

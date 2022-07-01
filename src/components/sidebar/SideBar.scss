@@ -1,3 +1,4 @@
+@import '../../theme.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 $sidebar-bg-color: #0c1e35;
@@ -9,6 +10,14 @@ $icon-bg-color: rgba(255, 255, 255, 0.05);
 $icon-size: 35px;
 
 @import '~react-pro-sidebar/dist/scss/styles.scss';
+
+.custome-sidebar{
+    height: auto!important;
+    
+    @include mobile{
+        height: 100%!important;
+    }
+}
 
 .active_tab {
     // border-right: 5px solid #b3b8d4;

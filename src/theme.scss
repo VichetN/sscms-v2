@@ -3,6 +3,7 @@ $secondary-color: grey ;
 $font-color:  black;
 $spacing20:  20px;
 $spacing15:  15px;
+$badgeColor:  red;
 
 @mixin mobile {
     @media only screen and (max-width:768px) {
@@ -19,5 +20,33 @@ $spacing15:  15px;
 @mixin desktop {
     @media only screen and (min-width:992px) {
         @content;
+    }
+}
+
+@mixin deviceHeight799 {
+    @media screen and (max-heigth:799px) {
+        @content;
+    }
+}
+
+@mixin printMedia {
+    @media print {
+        @content;
+    }
+}
+
+@mixin customScroll (){
+    ::-webkit-scrollbar{
+        @include tablet(){
+            background-color: #ddd;
+            width: 10px;
+            border-radius: 0px 3px 3px 0px;
+        }
+    }
+    ::-webkit-scrollbar-thumb{
+        @include tablet(){
+            background-color: #aaa;
+            border-radius: 5px 3px 3px 5px;
+        }
     }
 }

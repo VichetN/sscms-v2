@@ -1,0 +1,13 @@
+@import '../../theme.scss';
+
+.ssc_notfound_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+
+    .ssc_notfound_header{
+        width: 60%;
+        text-align: center;
+    }
+}

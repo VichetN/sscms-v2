@@ -2,23 +2,26 @@
 
 body {
   margin: 0;
-  height: 110vh;
+  // height: 100vh;
+  // height: 100%;
   color: #353535;
   font-family: 'Roboto', sans-serif;
 }
 
-#root {
-  height: 100%;
-}
-
 .app {
-  height: 100%;
+  height: 100vh;
   display: flex;
   position: relative;
 
+  @include customScroll();
+
   .ssc_container {
-    height: 78vh;
+    height: 74vh;
     overflow-y: none;
+
+    // @include deviceHeight799 {
+    //   height: 70vh;
+    // }
   }
 
   // .sidebar-btn-wrapper {
