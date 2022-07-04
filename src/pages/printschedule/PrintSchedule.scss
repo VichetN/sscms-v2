@@ -1,9 +1,20 @@
 @import '../../theme.scss';
 
-.ssc_fetch_btn{
-    width: 100%;
-}
+.ssc_print_schedule_container{
 
-.ssc_print_btn{
-    width: 100%;
+    .ssc_search_paper{
+        height: 40px!important;
+    }
+
+    .ssc_fetch_btn{
+        width: 100%;
+    }
+    
+    .ssc_print_btn{
+        width: 100%;
+    }
+
+    .ssc_container{
+        background-color: #fff;
+    }
 }

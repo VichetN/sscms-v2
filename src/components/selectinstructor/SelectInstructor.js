@@ -9,7 +9,7 @@ function SelectInstructor({ control, name, setValue,value, error, helperText,req
     const [dataSelect, setDataSelect] = useState([])
     const { loading } = useRequest(getAllInstructor, {
         onSuccess: (res) => {
-            if (res) {
+            if (res?.status) {
                 setDataSelect(res?.data?.map(e => ({
                     id: e?.id,
                     label: e?.name,

@@ -11,7 +11,7 @@ import { IoCloseCircle } from 'react-icons/io5'
 import * as yup from 'yup'
 
 import moment from 'moment';
-import { OpenSnackBar } from '../../../hooks';
+import { toast } from 'react-toastify';
 
 const initialState = {
     invoiceNumber: "",
@@ -39,12 +39,6 @@ const schema = yup.object({
 
 function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
 
-    const [snackBar, setSnackBar] = useState({
-        open: false,
-        message: '',
-        variant: 'success'
-    })
-
     const [formData, setFormData] = useState({ ...initialState })
     const { control, register, reset, handleSubmit, formState: { errors },setValue } = useForm({
         resolver: yupResolver(schema),
@@ -59,12 +53,6 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
                 setFormData({ ...initialState })
                 reset()
                 setOpen(false)
-
-                setSnackBar({
-                    open: true,
-                    message: 'Created successfully!',
-                    variant: 'success',
-                })
             }
         }
     })
@@ -79,9 +67,15 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
     const onSubmit = (data) => {
 
         if(data?.studentId?.classType === ""){
-            console.log(data?.studentId)
-            // return
+            toast.warning('Warning! student has no class type.')
+            return
         }
+
+        if(data?.studentId?.className === ""){
+            toast.warning('Warning! student has no class.')
+            return
+        }
+
         run({
             ...data,
             studentId: data?.studentId?.id,
@@ -116,7 +110,6 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
 
     return (
         <>
-            <OpenSnackBar open={snackBar?.open} alertVariant={snackBar?.variant} message={snackBar?.message} setSnackBar={setSnackBar} />
             <PrimaryModal open={open} setOpen={setOpen} >
 
                 <Grid container spacing={2}>

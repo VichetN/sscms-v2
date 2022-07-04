@@ -1,66 +1,81 @@
 @import '../../theme.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-$sidebar-bg-color: #0c1e35;
+// $sidebar-bg-color: #0c1e35;rgb(180, 217, 255)
+$sidebar-bg-color: rgb(180, 217, 255);
 $submenu-bg-color: rgba(255, 255, 255, 0.05);
 $submenu-bg-color-collapsed: rgba(#0c1e35, 0.95);
-$sidebar-color: #b3b8d4;
-$highlight-color: #dee2ec;
+// $sidebar-color: #b3b8d4;#0c1e35;
+$sidebar-color: #0c1e35;
+// $highlight-color: #dee2ec;
+$highlight-color: #0c1e35;
 $icon-bg-color: rgba(255, 255, 255, 0.05);
 $icon-size: 35px;
 
 @import '~react-pro-sidebar/dist/scss/styles.scss';
 
-.custome-sidebar{
-    height: auto!important;
-    
-    @include mobile{
-        height: 100%!important;
+.custome-sidebar {
+    height: auto !important;
+
+    @include mobile {
+        height: 100% !important;
     }
-}
 
-.active_tab {
-    // border-right: 5px solid #b3b8d4;
-
-    .pro-inner-item {
-        padding: 8px 25px 8px 10px !important;
-        margin: 0px 10px;
-        background-color: #546171;
-        font-size: 18px;
-        border-radius: 10px;
-        transition: all 0.7s;
-
-        .pro-icon-wrapper {
-            background-color: #0c1e35 !important;
-            transform: rotate(-370deg);
-            transition: all 0.7s;
+    .pro-menu-item {
+        .pro-inner-item {
+            padding: 4px 0px 4px 20px !important;
         }
-    }
-}
 
-.sidebar_footer {
-    
-    .logout_footer {
+        &.active_tab {
+            // border-right: 5px solid #b3b8d4;
 
-        &:hover {
             .pro-inner-item {
-                padding: 8px 25px 8px 10px !important;
+                padding: 4px 0px 4px 10px !important;
                 margin: 0px 10px;
-                background-color: #715459;
+                // background-color: #546171;
+                background-color: #e6f7ff;
                 font-size: 18px;
                 border-radius: 10px;
                 transition: all 0.7s;
 
-
                 .pro-icon-wrapper {
                     background-color: #0c1e35 !important;
-                    transform: rotate(-360deg);
+                    transform: rotate(-370deg);
                     transition: all 0.7s;
+                    // color: #b3b8d4;
+                    color: #fff;
                 }
-
             }
         }
+    }
 
 
+
+    .sidebar_footer {
+
+        .logout_footer {
+
+            &:hover {
+                .pro-inner-item {
+                    // padding: 8px 25px 8px 10px !important;
+                    padding: 4px 0px 4px 10px !important;
+                    margin: 0px 10px;
+                    background-color: #715459;
+                    font-size: 18px;
+                    border-radius: 10px;
+                    transition: all 0.7s;
+                    color: #fff;
+
+                    .pro-icon-wrapper {
+                        background-color: #0c1e35 !important;
+                        transform: rotate(-360deg);
+                        transition: all 0.7s;
+                    }
+
+                }
+            }
+
+
+        }
     }
 }

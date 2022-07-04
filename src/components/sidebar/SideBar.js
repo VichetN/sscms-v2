@@ -42,9 +42,9 @@ function SideBar({ handleToggleSidebar, toggled }) {
 
                 <SidebarContent>
                     <Menu iconShape="circle">
-                        {/* <MenuItem onClick={() => handleNavigate('/')} className={keyMenu(urlPath) === '' ? 'active_tab' : ''} icon={<RiDashboardFill />}>
+                        <MenuItem onClick={() => handleNavigate('/')} className={keyMenu(urlPath) === '' ? 'active_tab' : ''} icon={<RiDashboardFill />}>
                             Dashboard
-                        </MenuItem> */}
+                        </MenuItem>
                         <MenuItem onClick={() => handleNavigate('/schedule')} className={keyMenu(urlPath) === 'schedule' ? 'active_tab' : ''} icon={<AiFillSchedule />}>
                             Schedule
                         </MenuItem>

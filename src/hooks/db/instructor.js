@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const getAllInstructor = async () => {
 
@@ -11,15 +12,24 @@ export const getAllInstructor = async () => {
         const res = await axios.post(`${process.env.React_App_URL}/get/getAllInstructor.php`, params);
         
         if(res?.data?.error){
-            console.error(res?.data?.error)
-            return
+            toast.error(res?.data?.error)
+            return {
+                status:false,
+                data:null
+            }
         }
 
-        return res?.data
+        return {
+            status:true,
+            data:res?.data?.data
+        }
 
     }catch(error){
-        console.log(error)
-        return false
+        toast.error(error?.message)
+        return {
+            status:false,
+            data:null
+        }
     }
     
 }

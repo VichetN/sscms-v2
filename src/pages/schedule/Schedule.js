@@ -9,7 +9,6 @@ import { useRequest } from 'ahooks';
 import moment from 'moment';
 import ReactLoading from "react-loading";
 import {GrSchedules} from 'react-icons/gr'
-import { OpenSnackBar } from '../../hooks';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
@@ -81,12 +80,6 @@ function Schedule() {
 
     const navigate = useNavigate()
 
-    const [snackBar, setSnackBar] = useState({
-        open: false,
-        message: '',
-        variant: 'success'
-    })
-
     const [openAdd, setOpenAdd] = useState(false)
     const [openDetailSchedule, setOpenDetailSchedule] = useState(false)
     const [dateFilter, setDateFilter] = useState(moment().format('YYYY-MM-DD'))
@@ -101,9 +94,8 @@ function Schedule() {
     const { loading, run } = useRequest(getScheduleByMonth, {
         manual: true,
         onSuccess: (res) => {
-            if (res) {
+            if (res?.status) {
                 setCalendarData([...res?.data?.map(e => ({ title: JSON.stringify(e), date: e?.createdAt }))])
-                // setTableData(res)
             }
         },
         pollingInterval: 60000
@@ -140,12 +132,7 @@ function Schedule() {
 
         setDateToCreate(moment(value?.dateStr))
         setOpenAdd(true)
-        // console.log(value)
-        // setSnackBar({
-        //     message: value?.dateStr,
-        //     open:true,
-        //     variant:'info'
-        // })
+       
     }
     const handleEventClick = (clickInfo) => {
         const event = JSON.parse(clickInfo?.event?._def?.title)
@@ -184,17 +171,14 @@ function Schedule() {
             <CreateSchedule open={openAdd} setOpen={setOpenAdd} fetchData={fetchData} initialDate={dateToCreate} />
             <ScheduleDetail open={openDetailSchedule} setOpen={setOpenDetailSchedule} data={detailData} fetchData={fetchData} />
 
-            <OpenSnackBar open={snackBar?.open} alertVariant={snackBar?.variant} message={snackBar?.message} setSnackBar={setSnackBar} />
-
-            <Box className='ssc_user_container' style={{ padding: 25 }}>
+            <Box className='ssc_schedule_container' style={{ padding: 25 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4} md={7} lg={9}>
-                        <PageTitle title={'Schedule'} />
+                        <PageTitle title={'SCHEDULE'} />
                     </Grid>
 
                     <Grid item xs={12} sm={4} md={1} lg={1}>
                         <Paper
-                            // component="form"
                             className='ssc_search_paper'
                             sx={{ p: '0px 4px', display: 'flex', alignItems: 'center',justifyContent:'center' }}
                         >

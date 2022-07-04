@@ -12,16 +12,14 @@ body {
   height: 100vh;
   display: flex;
   position: relative;
+  background-color: #ddd;
 
   @include customScroll();
 
   .ssc_container {
-    height: 74vh;
+    // height: 74vh;
     overflow-y: none;
 
-    // @include deviceHeight799 {
-    //   height: 70vh;
-    // }
   }
 
   // .sidebar-btn-wrapper {

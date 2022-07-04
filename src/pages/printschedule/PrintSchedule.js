@@ -1,4 +1,4 @@
-import { Box, Grid, IconButton,ListItemIcon, Menu, MenuItem,Typography } from '@mui/material';
+import { Box, Grid, IconButton, ListItemIcon, Menu, MenuItem, Paper, Typography } from '@mui/material';
 import { useRequest } from 'ahooks';
 import moment from 'moment';
 import React, { useRef, useState } from 'react'
@@ -84,7 +84,6 @@ const schema = yup.object({
 
 function PrintSchedule() {
 
-    const [openAdd, setOpenAdd] = useState(false)
     const [tableData, setTableData] = useState(null)
     const [formData, setFormData] = useState({ ...initialState })
 
@@ -98,10 +97,9 @@ function PrintSchedule() {
     const { loading, run } = useRequest(getScheduleByMonthPool, {
         manual: true,
         onSuccess: (res) => {
-            if (res) {
-                console.log(res)
+            if (res?.status) {
                 // setCalendarData([...res?.data?.map(e => ({ title: JSON.stringify(e), date: e?.createdAt }))])
-                setTableData(res)
+                setTableData(res?.data)
             }
         },
     });
@@ -124,13 +122,14 @@ function PrintSchedule() {
 
     return (
         <>
-            <Box className='ssc_user_container' style={{ padding: 25 }}>
+            <Box className='ssc_print_schedule_container' style={{padding:25}}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={12} lg={12}>
-                        <PageTitle title={'Print Schedule'} />
+                        <PageTitle title={'PRINT SCHEDULE'} />
                     </Grid>
 
-                    <Grid item xs={12} sm={4} md={4} lg={3} xl={2}>
+                    <Grid item xs={12} sm={4} md={4} lg={3} xl={2} >
+
                         <ControllDatePicker
                             name={'date'}
                             control={control}
@@ -140,6 +139,7 @@ function PrintSchedule() {
                             value={formData?.date}
                             setValue={handleSelectMonth}
                         />
+
                     </Grid>
 
                     <Grid item xs={12} sm={4} md={4} lg={3} xl={2}>
@@ -174,12 +174,12 @@ function PrintSchedule() {
 
                     <Grid item xs={12} sm={4} md={4} lg={2} xl={2}>
                         <ReactToPrint
-                            documentTitle={`Schedule ${tableData?.date ? ' - '+moment(tableData?.date).format('DD-MMM-YYYY'):'គ្មាន'} ${tableData?.poolName ? ' - '+ tableData?.poolName :'គ្មាន'}`}
+                            documentTitle={`Schedule ${tableData?.date ? ' - ' + moment(tableData?.date).format('DD-MMM-YYYY') : 'គ្មាន'} ${tableData?.poolName ? ' - ' + tableData?.poolName : 'គ្មាន'}`}
                             trigger={() => <LoadingButton
                                 variant='contained'
                                 disableElevation
                                 loading={loading}
-                                disabled={ !tableData?.data?.length > 0 }
+                                disabled={!tableData?.data?.length > 0}
                                 size='medium'
                                 className='ssc_print_btn'
                                 startIcon={<RiPrinterFill />}
@@ -192,8 +192,10 @@ function PrintSchedule() {
 
                     </Grid>
 
-                    <Grid item xs={12} sm={12} md={12} lg={12} className="ssc_container">
-                        <PrintContent printRef={printRef} printData={tableData} />
+                    <Grid item xs={12} sm={12} md={12} lg={12} >
+                        <Box className="ssc_container">
+                            <PrintContent printRef={printRef} printData={tableData} />
+                        </Box>
                         {/* <Box className="ssc_data_table_container" >
                             <Table loading={loading} data={tableData?.data} fillHeight bordered cellBordered hover onSortColumn={(key, type) => console.log(key, type)}>
                                 <Column width={100} >

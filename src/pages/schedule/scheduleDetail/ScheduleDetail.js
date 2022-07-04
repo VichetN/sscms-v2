@@ -14,17 +14,10 @@ import { useRequest } from 'ahooks'
 //style
 import './ScheduleDetail.scss'
 import { deleteSchedule } from '../../../hooks/db'
-import { OpenSnackBar } from '../../../hooks'
 import { IoMdArrowDroprightCircle, IoMdTrash } from 'react-icons/io'
 import { SiGoogleclassroom } from 'react-icons/si';
 
 function ScheduleDetail({ open, setOpen, data, fetchData }) {
-
-    const [snackBar, setSnackBar] = useState({
-        open: false,
-        message: '',
-        variant: 'success'
-    })
 
     const [openConfirm, setOpenConfirm] = useState(false)
 
@@ -32,27 +25,17 @@ function ScheduleDetail({ open, setOpen, data, fetchData }) {
         manual: true,
         onSuccess: (res) => {
             if (!res?.status) {
-                setSnackBar({
-                    open: true,
-                    message: res?.message,
-                    variant: 'error',
-                })
                 return
             }
 
             setOpen(false)
             fetchData()
-            setSnackBar({
-                open: true,
-                message: res?.message,
-                variant: 'success',
-            })
+            
         },
     });
 
     return (
         <>
-            <OpenSnackBar open={snackBar?.open} alertVariant={snackBar?.variant} message={snackBar?.message} setSnackBar={setSnackBar} />
 
             <ControlDialog open={openConfirm} setOpen={setOpenConfirm} handleYes={() => deleteData({ sd_id: data?.sd_id })} title='Confirmation' description={'Do you want to delete? Please confirm.'} />
 
