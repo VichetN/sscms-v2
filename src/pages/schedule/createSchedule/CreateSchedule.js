@@ -40,9 +40,9 @@ const schema = yup.object({
 function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
 
     const [formData, setFormData] = useState({ ...initialState })
-    const { control, register, reset, handleSubmit, formState: { errors },setValue } = useForm({
+    const { control, register, reset, handleSubmit, formState: { errors }, setValue } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: { ...initialState}
+        defaultValues: { ...initialState }
     })
 
     const { loading, run } = useRequest(createSchedule, {
@@ -57,21 +57,21 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
         }
     })
 
-    useEffect(()=>{
-        if(initialDate){
+    useEffect(() => {
+        if (initialDate) {
             setFormData({ ...initialState, createdAt: initialDate })
-            setValue("createdAt",initialDate)
+            setValue("createdAt", initialDate)
         }
-    },[initialDate, setFormData, setValue])
+    }, [initialDate, setFormData, setValue])
 
     const onSubmit = (data) => {
 
-        if(data?.studentId?.classType === ""){
+        if (data?.studentId?.classType === "") {
             toast.warning('Warning! student has no class type.')
             return
         }
 
-        if(data?.studentId?.className === ""){
+        if (data?.studentId?.className === "") {
             toast.warning('Warning! student has no class.')
             return
         }
@@ -110,27 +110,32 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
 
     return (
         <>
-            <PrimaryModal open={open} setOpen={setOpen} >
+            <PrimaryModal open={open} setOpen={setOpen}
+                title={
+                    <Grid container spacing={2}>
+
+                        <Grid item xs={10} sm={10} md={10} lg={10}>
+                            <Typography variant="h5" gutterBottom component="div">
+                                <BsCalendarPlus /> Add Schedule
+                            </Typography>
+                            <Typography variant="subtitle2" gutterBottom component="div">
+                                Complete required field to add.
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={2} sm={2} md={2} lg={2} >
+                            <Stack direction={'row'} justifyContent='flex-end' alignItems={'center'}>
+                                <IconButton color='error' onClick={() => setOpen(false)}>
+                                    <IoCloseCircle />
+                                </IconButton>
+                            </Stack>
+
+                        </Grid>
+                    </Grid>
+                }
+            >
 
                 <Grid container spacing={2}>
-
-                    <Grid item xs={10} sm={10} md={10} lg={10}>
-                        <Typography variant="h5" gutterBottom component="div">
-                            <BsCalendarPlus /> Add Schedule
-                        </Typography>
-                        <Typography variant="subtitle2" gutterBottom component="div">
-                            Complete required field to add.
-                        </Typography>
-                    </Grid>
-
-                    <Grid item xs={2} sm={2} md={2} lg={2} >
-                        <Stack direction={'row'} justifyContent='flex-end' alignItems={'center'}>
-                            <IconButton color='error' onClick={()=> setOpen(false)}>
-                                <IoCloseCircle />
-                            </IconButton>
-                        </Stack>
-
-                    </Grid>
 
                     <Grid item xs={12} sm={12} md={6} lg={6}>
                         <SelectStudent

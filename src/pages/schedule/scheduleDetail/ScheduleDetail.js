@@ -30,7 +30,7 @@ function ScheduleDetail({ open, setOpen, data, fetchData }) {
 
             setOpen(false)
             fetchData()
-            
+
         },
     });
 
@@ -39,26 +39,30 @@ function ScheduleDetail({ open, setOpen, data, fetchData }) {
 
             <ControlDialog open={openConfirm} setOpen={setOpenConfirm} handleYes={() => deleteData({ sd_id: data?.sd_id })} title='Confirmation' description={'Do you want to delete? Please confirm.'} />
 
-            <PrimaryModal open={open} setOpen={setOpen}>
+            <PrimaryModal open={open} setOpen={setOpen}
+                title={
+                    <Grid container spacing={4}>
+                        <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+                            <Typography variant="h5" gutterBottom component="div">
+                                <GrSchedules /> Schedule
+                            </Typography>
+                            <Typography variant="subtitle2" gutterBottom component="div">
+                                Detail scheduled on date.
+                            </Typography>
+                        </Grid>
+
+                        <Grid item xs={2} sm={2} md={2} lg={2} xl={2}>
+                            <Stack direction={'row'} justifyContent='flex-end' alignItems={'center'}>
+                                <IconButton color='error' onClick={() => setOpen(false)}>
+                                    <IoCloseCircle />
+                                </IconButton>
+                            </Stack>
+
+                        </Grid>
+                    </Grid>
+                }
+            >
                 <Grid container spacing={4}>
-
-                    <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
-                        <Typography variant="h5" gutterBottom component="div">
-                            <GrSchedules /> Schedule
-                        </Typography>
-                        <Typography variant="subtitle2" gutterBottom component="div">
-                            Detail scheduled on date.
-                        </Typography>
-                    </Grid>
-
-                    <Grid item xs={2} sm={2} md={2} lg={2} xl={2}>
-                        <Stack direction={'row'} justifyContent='flex-end' alignItems={'center'}>
-                            <IconButton color='error' onClick={() => setOpen(false)}>
-                                <IoCloseCircle />
-                            </IconButton>
-                        </Stack>
-
-                    </Grid>
 
                     <Grid item xs={2} sm={2} md={2} lg={2} xl={2} textAlign='right'>
                         <BsCalendarWeek style={{ fontSize: 35 }} />
