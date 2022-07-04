@@ -26,6 +26,7 @@ function SelectTime({ control, name, setValue,value, error, helperText,required 
                     isOptionEqualToValue={(option, value) => option?.value === value?.value}
                     getOptionLabel={(option) => option.label}
                     style={{ width: '100%' }}
+                    size='small'
                     renderInput={(params) => <TextField required={required} error={error} helperText={helperText} {...params} label="Time" />}
                 />
             )

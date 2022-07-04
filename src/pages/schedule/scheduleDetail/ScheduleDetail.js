@@ -15,7 +15,8 @@ import { useRequest } from 'ahooks'
 import './ScheduleDetail.scss'
 import { deleteSchedule } from '../../../hooks/db'
 import { OpenSnackBar } from '../../../hooks'
-import { IoMdTrash } from 'react-icons/io'
+import { IoMdArrowDroprightCircle, IoMdTrash } from 'react-icons/io'
+import { SiGoogleclassroom } from 'react-icons/si';
 
 function ScheduleDetail({ open, setOpen, data, fetchData }) {
 
@@ -93,6 +94,16 @@ function ScheduleDetail({ open, setOpen, data, fetchData }) {
                     <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
                         Name
                         <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{data?.studentName}</Typography>
+                        <Divider className='ssc_detail_divider' />
+                    </Grid>
+
+                    <Grid item xs={2} sm={2} md={2} lg={2} xl={2} textAlign='right'>
+                        <SiGoogleclassroom style={{ fontSize: 35 }} />
+                    </Grid>
+                    <Grid item xs={10} sm={10} md={10} lg={10} xl={10}>
+                        Class
+                        <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{data?.className}</Typography>
+                        <Typography variant='h4' component={'i'} fontSize={15} fontWeight={'bold'}><IoMdArrowDroprightCircle /> {data?.classType}</Typography>
                         <Divider className='ssc_detail_divider' />
                     </Grid>
 

@@ -17,7 +17,10 @@ function SelectStudent({ control, name, setValue,value, error, helperText,requir
                     endDate: e?.end_date,
                     locationId: e?.location_id,
                     permission: e?.permission,
-                    instructorId: e?.inst_id
+                    instructorId: e?.inst_id,
+                    course_id: e?.course_id,
+                    classType: e?.classType,
+                    className: e?.className
                 })))
             }
         }
@@ -41,6 +44,7 @@ function SelectStudent({ control, name, setValue,value, error, helperText,requir
                     getOptionLabel={(option) => option.label}
                     style={{ width: '100%' }}
                     loading={loading}
+                    size='small'
                     renderInput={(params) => <TextField required={required} error={error} helperText={helperText} {...params} label="Student" />}
                 />
             )

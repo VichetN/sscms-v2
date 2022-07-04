@@ -27,6 +27,7 @@ function SelectPool({ control, name, setValue,value, error, helperText,required 
                     disablePortal
                     id="combo-box-pool"
                     value={value}
+                    size="small"
                     options={dataSelect}
                     onChange={(option, value) => {
                         setValue(value)

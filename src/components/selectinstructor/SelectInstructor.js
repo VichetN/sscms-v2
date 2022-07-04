@@ -36,6 +36,7 @@ function SelectInstructor({ control, name, setValue,value, error, helperText,req
                     getOptionLabel={(option) => option.label}
                     style={{ width: '100%' }}
                     loading={loading}
+                    size='small'
                     renderInput={(params) => <TextField required={required} error={error} helperText={helperText} {...params} label={label} />}
                 />
             )

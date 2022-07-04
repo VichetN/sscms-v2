@@ -74,9 +74,14 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
             setFormData({ ...initialState, createdAt: initialDate })
             setValue("createdAt",initialDate)
         }
-    },[initialDate])
+    },[initialDate, setFormData, setValue])
 
     const onSubmit = (data) => {
+
+        if(data?.studentId?.classType === ""){
+            console.log(data?.studentId)
+            // return
+        }
         run({
             ...data,
             studentId: data?.studentId?.id,
@@ -86,7 +91,10 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
             poolId: data?.poolId?.id,
             time: data?.time?.value,
             standById: data?.standById?.id,
-            createdAt: moment(data?.createdAt).format('YYYY-MM-DD')
+            createdAt: moment(data?.createdAt).format('YYYY-MM-DD'),
+            course_id: data?.studentId?.course_id,
+            classType: data?.studentId?.classType,
+            className: data?.studentId?.className
         })
     }
 
@@ -150,6 +158,7 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
                             style={{ width: '100%' }}
                             value={formData.invoiceNumber}
                             required
+                            size='small'
                             label="Invoice ID"
                             {...register('invoiceNumber', {
                                 onChange: (value) => setFormData({ ...formData, invoiceNumber: value.target.value })
@@ -216,6 +225,7 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
                             helperText={<span>{errors?.remark?.message}</span>}
                             style={{ width: '100%' }}
                             value={formData.remark}
+                            size='small'
                             label={null}
                             {...register('remark', {
                                 onChange: (value) => setFormData({ ...formData, remark: value.target.value })

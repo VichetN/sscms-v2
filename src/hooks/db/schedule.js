@@ -99,7 +99,7 @@ export const getScheduleByMonthPool = async (value) => {
         return res?.data
 
     }catch(error){
-        console.log(error)
+        console.error(error)
         return false
     }
     

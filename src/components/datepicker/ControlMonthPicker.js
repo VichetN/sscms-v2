@@ -26,6 +26,7 @@ function ControlMonthPicker({ control, name, setValue, value, error, helperText,
                         }}
                         renderInput={(params) => (
                             <TextField style={{ width: '100%' }} {...params}
+                                size='small'
                                 error={error}
                                 helperText={helperText}
                                 required={required}

@@ -14,7 +14,7 @@ export const OpenSnackBar = ({ open, alertVariant, message, setSnackBar }) => {
                 variant:alertVariant
             })
         }
-    }, [open])
+    }, [open, setOpenSnackBar, setSnackBar,alertVariant,message])
 
     return (
         <Snackbar

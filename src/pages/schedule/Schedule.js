@@ -1,5 +1,5 @@
 import { Box, Button, Grid, IconButton, ListItemIcon, Menu, MenuItem, Paper, Stack, Typography } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { VscSettings } from 'react-icons/vsc';
 import { PageTitle } from '../../components';
@@ -130,9 +130,9 @@ function Schedule() {
     //     },
     // });
 
-    const fetchData = () => {
+    const fetchData = useCallback(() => {
         run({ date: dateFilter })
-    }
+    },[dateFilter, run])
 
     const handleClickDate = (value) => {
 
@@ -177,7 +177,7 @@ function Schedule() {
 
     useEffect(() => {
         fetchData()
-    }, [ dateFilter])
+    }, [ dateFilter ,fetchData])
 
     return (
         <>

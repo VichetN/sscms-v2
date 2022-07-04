@@ -1,17 +1,12 @@
-import { Box, Button, Divider, Grid, IconButton, InputBase, ListItemIcon, Menu, MenuItem, Paper, Stack, Typography } from '@mui/material';
+import { Box, Grid, IconButton,ListItemIcon, Menu, MenuItem,Typography } from '@mui/material';
 import { useRequest } from 'ahooks';
 import moment from 'moment';
 import React, { useRef, useState } from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi';
-import { BsPlusCircleFill } from 'react-icons/bs';
-import { ImSearch } from 'react-icons/im';
 import { IoMdTrash } from 'react-icons/io';
-import { VscSettings } from 'react-icons/vsc';
-import { Cell, Column, HeaderCell, Table } from 'rsuite-table';
-import { ControllDatePicker, ControlMonthPicker, PageTitle, SelectPool } from '../../components';
+import { ControllDatePicker, PageTitle, SelectPool } from '../../components';
 import { menuPaperProps } from '../../utils/function';
-import { deleteSchedule, getScheduleByMonth, getScheduleByMonthPool, getSchedulePaginator } from '../../hooks/db';
-import calculateAge from 'calculate-age'
+import { getScheduleByMonthPool } from '../../hooks/db';
 import { FiRefreshCw } from 'react-icons/fi'
 
 //style
@@ -34,58 +29,58 @@ const schema = yup.object({
     date: yup.date().nullable().required('Please select date!')
 })
 
-const ControlMenu = ({ rowData, handleDelete }) => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const openMenu = Boolean(anchorEl);
+// const ControlMenu = ({ rowData, handleDelete }) => {
+//     const [anchorEl, setAnchorEl] = useState(null);
+//     const openMenu = Boolean(anchorEl);
 
-    const handleOpenMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+//     const handleOpenMenu = (event) => {
+//         setAnchorEl(event.currentTarget);
+//     };
 
-    function handleClickDelete(id) {
-        handleDelete({ sd_id: id })
-        setAnchorEl(null);
-    };
+//     function handleClickDelete(id) {
+//         handleDelete({ sd_id: id })
+//         setAnchorEl(null);
+//     };
 
-    return (
-        <>
-            <IconButton
-                onClick={handleOpenMenu}
-                aria-controls={`simple-menu`}
-                aria-haspopup="true"
-            // aria-expanded={openMenu ? 'true' : undefined}
-            >
-                <BiDotsVerticalRounded />
-            </IconButton>
+//     return (
+//         <>
+//             <IconButton
+//                 onClick={handleOpenMenu}
+//                 aria-controls={`simple-menu`}
+//                 aria-haspopup="true"
+//             // aria-expanded={openMenu ? 'true' : undefined}
+//             >
+//                 <BiDotsVerticalRounded />
+//             </IconButton>
 
-            <Menu
-                id={`account-menu-${rowData?.sd_id}`}
-                anchorEl={anchorEl}
-                PaperProps={menuPaperProps}
-                open={openMenu}
-                onClose={() => setAnchorEl(null)}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-            >
-                <MenuItem onClick={() => handleClickDelete(rowData?.sd_id)} key={rowData?.sd_id}>
-                    <ListItemIcon>
-                        <IoMdTrash />
-                    </ListItemIcon>
-                    <Typography variant="inherit" noWrap>
-                        Remove
-                    </Typography>
-                </MenuItem>
+//             <Menu
+//                 id={`account-menu-${rowData?.sd_id}`}
+//                 anchorEl={anchorEl}
+//                 PaperProps={menuPaperProps}
+//                 open={openMenu}
+//                 onClose={() => setAnchorEl(null)}
+//                 anchorOrigin={{
+//                     vertical: 'bottom',
+//                     horizontal: 'right',
+//                 }}
+//                 transformOrigin={{
+//                     vertical: 'top',
+//                     horizontal: 'right',
+//                 }}
+//             >
+//                 <MenuItem onClick={() => handleClickDelete(rowData?.sd_id)} key={rowData?.sd_id}>
+//                     <ListItemIcon>
+//                         <IoMdTrash />
+//                     </ListItemIcon>
+//                     <Typography variant="inherit" noWrap>
+//                         Remove
+//                     </Typography>
+//                 </MenuItem>
 
-            </Menu>
-        </>
-    )
-}
+//             </Menu>
+//         </>
+//     )
+// }
 
 function PrintSchedule() {
 
@@ -104,6 +99,7 @@ function PrintSchedule() {
         manual: true,
         onSuccess: (res) => {
             if (res) {
+                console.log(res)
                 // setCalendarData([...res?.data?.map(e => ({ title: JSON.stringify(e), date: e?.createdAt }))])
                 setTableData(res)
             }
@@ -163,8 +159,8 @@ function PrintSchedule() {
                             // variant='contained'
                             disableElevation
                             loading={loading}
-                            size='large'
-                            className='ssc_create_btn'
+                            size='medium'
+                            className='ssc_fetch_btn'
                             onClick={handleSubmit(onSubmit)}
                             startIcon={<FiRefreshCw />}
                         >
@@ -184,8 +180,8 @@ function PrintSchedule() {
                                 disableElevation
                                 loading={loading}
                                 disabled={ !tableData?.data?.length > 0 }
-                                size='large'
-                                className='ssc_create_btn'
+                                size='medium'
+                                className='ssc_print_btn'
                                 startIcon={<RiPrinterFill />}
                             >
                                 Print
