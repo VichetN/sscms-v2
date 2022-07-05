@@ -1,4 +1,4 @@
-import { Box, Dialog, DialogContent, DialogTitle, Modal, useMediaQuery, useTheme } from '@mui/material'
+import { Dialog, DialogContent, DialogTitle, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 
 //style
@@ -33,14 +33,12 @@ function PrimaryModal({ title, setOpen, open, children }) {
             className="ssc_primary_dialog"
             aria-labelledby="responsive-dialog-title"
         >
-            
             <DialogTitle id="responsive-dialog-title">
                 {title}
             </DialogTitle>
-            <DialogContent>
+            <DialogContent style={{paddingTop:20}}>
                 {children}
-            </DialogContent>
-            
+            </DialogContent> 
         </Dialog>
     )
 }
