@@ -23,7 +23,7 @@ function PrimaryModal({ title, setOpen, open, children }) {
 
     const handleClose = () => {
         setOpen(false);
-      };
+    };
 
     return (
         <Dialog
@@ -36,9 +36,9 @@ function PrimaryModal({ title, setOpen, open, children }) {
             <DialogTitle id="responsive-dialog-title">
                 {title}
             </DialogTitle>
-            <DialogContent style={{paddingTop:20}}>
+            <DialogContent style={{ paddingTop: 20 }}>
                 {children}
-            </DialogContent> 
+            </DialogContent>
         </Dialog>
     )
 }

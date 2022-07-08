@@ -5,6 +5,7 @@ import calculateAge from 'calculate-age'
 
 //style
 import './PrintContent.scss';
+import { BiCalendarExclamation } from 'react-icons/bi';
 
 const RowData = ({ data, className }) => {
 
@@ -32,68 +33,90 @@ const RowData = ({ data, className }) => {
 
 function PrintContent({ printRef, printData }) {
 
-    const printDataNo = printData?.data?.map((e, index) => ({...e, no:index+1}))
-
-    const indoorData = printDataNo?.filter(e => e?.classType !== 'Private (Outdoor)')
-    const outdoorData = printDataNo?.filter(e => e?.classType === 'Private (Outdoor)')
+    const printDataArr = printData?.data
 
     return (
         <>
-            <Box className="ssc_print_schedule" ref={printRef} >
+            <Box ref={printRef} >
+                {
+                    printDataArr?.map((print, index) => {
+                        const printNo = print?.data?.map((e, index) => ({ ...e, no: index + 1 }))
+                        const indoorData = printNo?.filter(e => e?.classType !== 'Private (Outdoor)')
+                        const outdoorData = printNo?.filter(e => e?.classType === 'Private (Outdoor)')
+                        return (
+                            <Box key={index} className="ssc_print_schedule" >
 
-                <Grid container spacing={2}>
-                    <Grid item xs={2} sm={2} md={2} lg={2}>
-                        Location <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{printData?.location}</Typography>
-                    </Grid>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={2} sm={2} md={2} lg={2}>
+                                        Location <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{print?.location}</Typography>
+                                    </Grid>
 
-                    <Grid item xs={8} sm={8} md={8} lg={8}>
-                        Pool <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{printData?.poolName}</Typography>
-                    </Grid>
+                                    <Grid item xs={8} sm={8} md={8} lg={8}>
+                                        Pool <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{print?.poolName}</Typography>
+                                    </Grid>
 
-                    <Grid item xs={2} sm={2} md={2} lg={2}>
-                        Date <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{printData?.date && moment(printData?.date).format('DD-MMM-YYYY')}</Typography>
-                    </Grid>
+                                    <Grid item xs={2} sm={2} md={2} lg={2}>
+                                        Date <Typography variant='h5' fontSize={15} fontWeight={'bold'}>{print?.date && moment(print?.date).format('DD-MMM-YYYY')}</Typography>
+                                    </Grid>
 
-                    <Grid item xs={12} sm={12} md={12} lg={12}>
-                        <table className='print_schedule_table'>
-                            <thead>
-                                <tr>
-                                    <th>N°</th>
-                                    <th>Invoice</th>
-                                    <th>Name</th>
-                                    <th>Age</th>
-                                    <th>DOB</th>
-                                    <th>Tel</th>
-                                    <th>Regist</th>
-                                    <th>Expired</th>
-                                    <th>Time</th>
-                                    <th>Class type</th>
-                                    <th>Instructor</th>
-                                    <th>Stand by</th>
-                                    <th>Photo</th>
-                                    <th>Remark</th>
-                                </tr>
-                            </thead>
+                                    <Grid item xs={12} sm={12} md={12} lg={12}>
+                                        <table className='print_schedule_table'>
+                                            <thead>
+                                                <tr>
+                                                    <th>N°</th>
+                                                    <th>Invoice</th>
+                                                    <th>Name</th>
+                                                    <th>Age</th>
+                                                    <th>DOB</th>
+                                                    <th>Tel</th>
+                                                    <th>Regist</th>
+                                                    <th>Expired</th>
+                                                    <th>Time</th>
+                                                    <th>Class type</th>
+                                                    <th>Instructor</th>
+                                                    <th>Stand by</th>
+                                                    <th>Photo</th>
+                                                    <th>Remark</th>
+                                                </tr>
+                                            </thead>
 
-                            <tbody>
-                                {
-                                    indoorData?.map((e, index) => (
-                                        <RowData data={e} key={index} />
-                                    ))
-                                }
+                                            <tbody>
+                                                {
+                                                    printNo?.length > 0 ?
+                                                        <>
+                                                            {
+                                                                indoorData?.map((e, index) => (
+                                                                    <RowData data={e} key={index} />
+                                                                ))
+                                                            }
+                                                            {
+                                                                outdoorData?.map((e, index) => (
+                                                                    <RowData data={e} key={index} className='ssc_row_print_outdoor' />
+                                                                ))
+                                                            }
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <tr>
+                                                                <td colSpan={14} style={{color:'#dddddd'}}>
+                                                                    <Typography><BiCalendarExclamation style={{fontSize:30}} /></Typography> 
+                                                                    <Typography>No schedule</Typography>
+                                                                </td>
+                                                            </tr>
+                                                        </>
 
-                                {
-                                    outdoorData?.map((e, index) => (
-                                        <RowData data={e} key={index} className='ssc_row_print_outdoor' />
-                                    ))
-                                }
+                                                }
 
-                            </tbody>
-                        </table>
-                    </Grid>
+                                            </tbody>
+                                        </table>
+                                    </Grid>
 
-                </Grid>
+                                </Grid>
 
+                            </Box>
+                        )
+                    })
+                }
             </Box>
         </>
     )

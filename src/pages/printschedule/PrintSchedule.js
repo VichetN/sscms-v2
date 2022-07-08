@@ -1,7 +1,7 @@
 import { Box, Grid, IconButton, ListItemIcon, Menu, MenuItem, Paper, Typography } from '@mui/material';
 import { useRequest } from 'ahooks';
 import moment from 'moment';
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { IoMdTrash } from 'react-icons/io';
 import { ControllDatePicker, PageTitle, SelectPool } from '../../components';
@@ -25,7 +25,7 @@ const initialState = {
 }
 
 const schema = yup.object({
-    poolId: yup.object().nullable().required('Please select pool!'),
+    // poolId: yup.object().nullable().required('Please select pool!'),
     date: yup.date().nullable().required('Please select date!')
 })
 
@@ -95,30 +95,33 @@ function PrintSchedule() {
     })
 
     const { loading, run } = useRequest(getScheduleByMonthPool, {
-        manual: true,
+        // manual: true,
         onSuccess: (res) => {
             if (res?.status) {
                 // setCalendarData([...res?.data?.map(e => ({ title: JSON.stringify(e), date: e?.createdAt }))])
                 setTableData(res?.data)
             }
         },
+        defaultParams:[{...formData,date: moment(formData?.date).format('YYYY-MM-DD')}]
     });
 
-    const onSubmit = (data) => {
-
+    const onSubmit = useCallback((data) => {
         run({
             ...data,
             poolId: data?.poolId?.id,
             date: moment(data?.date).format('YYYY-MM-DD')
         })
-    }
+    },[run])
 
     const handleSelectPool = (e) => {
         setFormData({ ...formData, poolId: e })
+        
     }
     const handleSelectMonth = (e) => {
         setFormData({ ...formData, date: e })
     }
+
+    useEffect(()=>handleSubmit(onSubmit),[formData,handleSubmit,onSubmit])
 
     return (
         <>
@@ -128,7 +131,7 @@ function PrintSchedule() {
                         <PageTitle title={'PRINT SCHEDULE'} />
                     </Grid>
 
-                    <Grid item xs={12} sm={4} md={4} lg={3} xl={2} >
+                    <Grid item xs={12} sm={6} md={4} lg={4} xl={2} >
 
                         <ControllDatePicker
                             name={'date'}
@@ -142,37 +145,24 @@ function PrintSchedule() {
 
                     </Grid>
 
-                    <Grid item xs={12} sm={4} md={4} lg={3} xl={2}>
-
+                    <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
                         <SelectPool
                             name={'poolId'}
                             control={control}
-                            required={true}
+                            required={false}
                             error={!!errors?.poolId}
                             helperText={<span>{errors?.poolId?.message}</span>}
                             value={formData.poolId}
                             setValue={handleSelectPool}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={4} md={4} lg={2} xl={1}>
-                        <LoadingButton
-                            // variant='contained'
-                            disableElevation
-                            loading={loading}
-                            size='medium'
-                            className='ssc_fetch_btn'
-                            onClick={handleSubmit(onSubmit)}
-                            startIcon={<FiRefreshCw />}
-                        >
-                            Fetch
-                        </LoadingButton>
-                    </Grid>
+                    
 
-                    <Grid item xs={12} sm={0} md={0} lg={2} xl={5}>
+                    <Grid item xs={12} sm={0} md={1} lg={2} xl={5}>
 
                     </Grid>
 
-                    <Grid item xs={12} sm={4} md={4} lg={2} xl={2}>
+                    <Grid item xs={12} sm={12} md={3} lg={2} xl={2}>
                         <ReactToPrint
                             documentTitle={`Schedule ${tableData?.date ? ' - ' + moment(tableData?.date).format('DD-MMM-YYYY') : 'គ្មាន'} ${tableData?.poolName ? ' - ' + tableData?.poolName : 'គ្មាន'}`}
                             trigger={() => <LoadingButton
