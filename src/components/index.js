@@ -10,6 +10,7 @@ import SelectPool from "./selectpool/SelectPool";
 import SelectTime from "./selecttime/SelectTime";
 import ControllDatePicker from "./datepicker/ControllDatePicker";
 import ControlMonthPicker from "./datepicker/ControlMonthPicker";
+import ControlDropDatePicker from "./datepicker/ControlDropDatePicker";
 import ControlDialog from "./dialog/ControlDialog";
 
 export {
@@ -25,5 +26,6 @@ export {
     SelectTime,
     SelectInstructor,
     ControlMonthPicker,
-    ControlDialog
+    ControlDialog,
+    ControlDropDatePicker
 }

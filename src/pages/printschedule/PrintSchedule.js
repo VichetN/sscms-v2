@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import { IoMdTrash } from 'react-icons/io';
-import { ControllDatePicker, PageTitle, SelectPool } from '../../components';
+import { ControlDropDatePicker, ControllDatePicker, PageTitle, SelectPool } from '../../components';
 import { menuPaperProps } from '../../utils/function';
 import { getScheduleByMonthPool } from '../../hooks/db';
 import { FiRefreshCw } from 'react-icons/fi'
@@ -26,7 +26,7 @@ const initialState = {
 
 const schema = yup.object({
     // poolId: yup.object().nullable().required('Please select pool!'),
-    date: yup.date().nullable().required('Please select date!')
+    date: yup.date().typeError('Must be type date!').nullable().required('Please select date!')
 })
 
 // const ControlMenu = ({ rowData, handleDelete }) => {
@@ -132,7 +132,6 @@ function PrintSchedule() {
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={2} >
-
                         <ControllDatePicker
                             name={'date'}
                             control={control}
@@ -142,7 +141,6 @@ function PrintSchedule() {
                             value={formData?.date}
                             setValue={handleSelectMonth}
                         />
-
                     </Grid>
 
                     <Grid item xs={12} sm={6} md={4} lg={4} xl={3}>
