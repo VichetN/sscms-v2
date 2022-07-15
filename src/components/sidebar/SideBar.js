@@ -35,7 +35,7 @@ function SideBar({ handleToggleSidebar, toggled }) {
             >
                 <SidebarHeader>
                     <div style={{ fontSize: 30, textAlign: 'center' }}>
-                        <img src={Logo} style={{ width: '70%', margin: '20px 0px' }} alt="Logo" />
+                        <img src={Logo} style={{ width: '95%', margin: '20px 0px' }} alt="Logo" />
                         {/* LOGO */}
                     </div>
                 </SidebarHeader>
