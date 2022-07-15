@@ -156,7 +156,6 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
                             style={{ width: '100%' }}
                             value={formData.invoiceNumber}
                             required
-                            className='ssc_text_field'
                             size='small'
                             label="Invoice ID"
                             {...register('invoiceNumber', {
