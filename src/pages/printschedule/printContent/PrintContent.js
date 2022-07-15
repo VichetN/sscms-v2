@@ -18,8 +18,6 @@ const RowData = ({ data, className }) => {
     const startTime = getFormattedTime(`${data?.createdAt} ${data?.time?.split('-')[0]}`)
     const endTime = getFormattedTime(`${data?.createdAt} ${data?.time?.split('-')[1]}`)
 
-    console.log(data?.time)
-
     return (
         <tr className={className}>
             <td>{data?.no}</td>

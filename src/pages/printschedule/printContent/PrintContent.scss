@@ -2,7 +2,7 @@
 
 .ssc_print_schedule{
     padding:15px;
-    border: 1px solid #ddd;
+    border: 1px solid #eee;
 
     overflow-x: auto;
 
@@ -18,16 +18,16 @@
 
     .print_schedule_table{
         width: 100%;
-        border: 1px solid #DDD;
+        border: 1px solid #eee;
         border-collapse: collapse;
         font-size: 12px;
         
         thead{
-            background-color: #eeee;
+            background-color: #fafafa;
             
             th{
                 padding:8px;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #eee;
                 position: relative;
 
                 &:first-child{
@@ -41,8 +41,8 @@
                 &::before{
                     content: '';
                     position: absolute;
-                    background-color: #bbb;
-                    width: 1px;
+                    background-color: #eee;
+                    width: 1.5px;
                     height: 70%;
                     left: 0px;
                     top: 4px;
@@ -55,7 +55,7 @@
             td{
                 padding: 8px;
                 text-align: center;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #eee;
             }
 
             &:last-child{

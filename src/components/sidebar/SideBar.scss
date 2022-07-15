@@ -23,6 +23,8 @@ $icon-size: 35px;
 
     @include mobile {
         height: 100% !important;
+        width: 270px;
+        min-width: 270px;
     }
 
     .pro-menu-item {
