@@ -16,6 +16,10 @@ $icon-size: 35px;
 
 .custome-sidebar {
     height: auto !important;
+    min-width: 200px;
+    width: 200px;
+    border-right: 1px solid #f0f0f0;
+    
 
     @include mobile {
         height: 100% !important;
@@ -28,21 +32,21 @@ $icon-size: 35px;
 
         &.active_tab {
             // border-right: 5px solid #b3b8d4;
-
             .pro-inner-item {
-                padding: 4px 0px 4px 10px !important;
-                margin: 0px 10px;
+                // padding: 4px 0px 4px 10px !important;
+                // margin: 0px 10px;
                 // background-color: #546171;
                 background-color: #e6f7ff;
-                font-size: 18px;
-                border-radius: 10px;
-                transition: all 0.7s;
-
+                font-size: 16px;
+                // border-radius: 10px;
+                transition: all 0.3s;
+                border-right: 3px solid #1976d2;
+                z-index: 1500;
+                
                 .pro-icon-wrapper {
                     background-color: #0c1e35 !important;
                     transform: rotate(-370deg);
-                    transition: all 0.7s;
-                    // color: #b3b8d4;
+                    transition: all 0.3s;
                     color: #fff;
                 }
             }
