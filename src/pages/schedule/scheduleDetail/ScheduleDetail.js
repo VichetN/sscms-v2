@@ -146,6 +146,7 @@ function ScheduleDetail({ open, setOpen, data, fetchData }) {
                                         startIcon={<IoMdTrash />}
                                         style={{ width: '100%' }}
                                         size='large' variant='contained'
+                                        className='ssc_text_field'
                                         disableElevation
                                         color='error'
                                         loading={loading}
