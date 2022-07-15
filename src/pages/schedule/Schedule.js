@@ -202,7 +202,7 @@ function Schedule() {
                             variant='contained'
                             disableElevation
                             size='large'
-                            className='ssc_create_btn'
+                            className='ssc_create_btn ssc_text_field'
                             onClick={() => setOpenAdd(true)}
                             startIcon={<BsPlusCircleFill />}
                         >

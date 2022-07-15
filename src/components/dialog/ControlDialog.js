@@ -25,10 +25,10 @@ function ControlDialog({open,setOpen,handleYes,description,title}) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button autoFocus onClick={() => setOpen(false)}>
+                    <Button className='ssc_text_field' autoFocus onClick={() => setOpen(false)}>
                         Cancel
                     </Button>
-                    <Button onClick={handleOk}>Yes</Button>
+                    <Button className='ssc_text_field' onClick={handleOk}>Yes</Button>
                 </DialogActions>
             </Dialog>
         </>

@@ -35,6 +35,7 @@ function SelectStudent({ control, name, setValue,value, error, helperText,requir
                     disablePortal
                     id="combo-box-student"
                     value={value}
+                    className='ssc_text_field'
                     onChange={(option, value) => {
                         setValue(value)
                         onChange(value)

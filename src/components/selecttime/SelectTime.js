@@ -18,6 +18,7 @@ function SelectTime({ control, name, setValue,value, error, helperText,required 
                     disablePortal
                     id="combo-box-student"
                     value={value}
+                    className='ssc_text_field'
                     onChange={(option, value) => {
                         setValue(value)
                         onChange(value)
@@ -25,9 +26,9 @@ function SelectTime({ control, name, setValue,value, error, helperText,required 
                     options={dataSelect}
                     isOptionEqualToValue={(option, value) => option?.value === value?.value}
                     getOptionLabel={(option) => option.label}
-                    style={{ width: '100%' }}
+                    style={{ width: '100%',height:20 }}
                     size='small'
-                    renderInput={(params) => <TextField required={required} error={error} helperText={helperText} {...params} label="Time" />}
+                    renderInput={(params) => <TextField  required={required} error={error} helperText={helperText} {...params} label="Time" />}
                 />
             )
             }

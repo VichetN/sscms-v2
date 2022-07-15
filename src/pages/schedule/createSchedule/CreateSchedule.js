@@ -156,6 +156,7 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
                             style={{ width: '100%' }}
                             value={formData.invoiceNumber}
                             required
+                            className='ssc_text_field'
                             size='small'
                             label="Invoice ID"
                             {...register('invoiceNumber', {
@@ -232,7 +233,7 @@ function CreateSchedule({ setOpen, open, fetchData, initialDate }) {
                     </Grid>
 
                     <Grid item xs={12} sm={12} md={12} lg={12}>
-                        <LoadingButton style={{ width: '100%' }} size='large' variant='contained' disableElevation loading={loading} onClick={handleSubmit(onSubmit)} >Save</LoadingButton>
+                        <LoadingButton style={{ width: '100%' }} className='ssc_text_field' size='small' variant='contained' disableElevation loading={loading} onClick={handleSubmit(onSubmit)} >Save</LoadingButton>
                     </Grid>
                 </Grid>
 

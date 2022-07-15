@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function keyMenu(e){
 
     const myArr = e.split("/");
@@ -66,4 +68,8 @@ export const menuPaperProps = {
             zIndex: 0,
         },
     },
+}
+
+export const getFormattedTime = (datetime) =>{
+    return moment(datetime).format('hh:mmA')
 }

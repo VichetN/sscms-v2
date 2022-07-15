@@ -19,6 +19,7 @@ function ControlDropDatePicker({ control, name, setValue, value, error, helperTe
                         inputFormat="DD/MM/yyyy"
                         value={value}
                         minDate={ minDate }
+                        className='ssc_text_field'
                         onChange={(value) => {
                             setValue(value)
                             onChange(value)

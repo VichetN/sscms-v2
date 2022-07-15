@@ -28,7 +28,7 @@ const theme = createTheme({
           backgroundColor: "rgb(250, 241, 232)"
         }
       }
-    }
+    },
   }
 });
 

@@ -169,7 +169,7 @@ function PrintSchedule() {
                                 loading={loading}
                                 disabled={!tableData?.data?.length > 0}
                                 size='medium'
-                                className='ssc_print_btn'
+                                className='ssc_print_btn ssc_text_field'
                                 startIcon={<RiPrinterFill />}
                             >
                                 Print

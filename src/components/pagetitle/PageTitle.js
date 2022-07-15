@@ -7,7 +7,7 @@ import './PageTitle.scss';
 function PageTitle({title}) {
   return (
     <Box className='ssc_page_title'>
-        <Typography variant='h5' style={{fontWeight:'bolder'}}>{title}</Typography>
+        <Typography variant='h5' style={{fontWeight:'bolder',fontSize:20}}>{title}</Typography>
     </Box>
   )
 }

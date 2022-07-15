@@ -31,6 +31,7 @@ function SelectInstructor({ control, name, setValue,value, error, helperText,req
                         setValue(value)
                         onChange(value)
                     }}
+                    className='ssc_text_field'
                     options={dataSelect}
                     isOptionEqualToValue={(option, value) => option?.id === value?.id}
                     getOptionLabel={(option) => option.label}

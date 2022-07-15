@@ -24,6 +24,7 @@ function ControlMonthPicker({ control, name, setValue, value, error, helperText,
                             setValue(value)
                             onChange(value)
                         }}
+                        className='ssc_text_field'
                         renderInput={(params) => (
                             <TextField style={{ width: '100%' }} {...params}
                                 size='small'

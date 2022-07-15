@@ -6,32 +6,60 @@
 
     overflow-x: auto;
 
+    .ssc_print_top_label{
+        padding: 8px 15px;
+        font-size: 11px;
+    }
+
     @include printMedia{
-        padding:30px;
+        padding:15px 15px;
         border: none;
     }
 
     .print_schedule_table{
         width: 100%;
-        border: 1px solid #ccc;
+        border: 1px solid #DDD;
         border-collapse: collapse;
         font-size: 12px;
         
         thead{
-            background-color: #ddd;
+            background-color: #eeee;
             
             th{
-                padding:5px;
-                border: 1px solid #000;
+                padding:8px;
+                border-bottom: 1px solid #ddd;
+                position: relative;
+
+                &:first-child{
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        width: 0px;
+                    }
+                }
+
+                &::before{
+                    content: '';
+                    position: absolute;
+                    background-color: #bbb;
+                    width: 1px;
+                    height: 70%;
+                    left: 0px;
+                    top: 4px;
+                }
             }
         }
 
         tbody{
 
             td{
-                padding: 5px;
+                padding: 8px;
                 text-align: center;
-                border: 1px solid #000;
+                border-bottom: 1px solid #ddd;
+            }
+
+            &:last-child{
+                border-bottom: none;
             }
 
             .ssc_row_print_outdoor{

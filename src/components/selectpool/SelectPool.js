@@ -29,6 +29,7 @@ function SelectPool({ control, name, setValue,value, error, helperText,required 
                     value={value}
                     size="small"
                     options={dataSelect}
+                    className='ssc_text_field'
                     onChange={(option, value) => {
                         setValue(value)
                         onChange(value)

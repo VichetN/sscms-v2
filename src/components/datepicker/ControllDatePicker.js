@@ -19,6 +19,7 @@ function ControllDatePicker({ control, name, setValue, value, error, helperText,
                         inputFormat="DD/MM/yyyy"
                         value={changeValue}
                         minDate={ minDate }
+                        className='ssc_text_field'
                         onAccept={(value)=> setValue(value) }
                         onChange={(value) => onChange(value) }
                         renderInput={(params) => (

@@ -29,8 +29,8 @@ function Logout({setOpen,open}) {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button onClick={handleClose}>Yes</Button>
+                <Button className='ssc_text_field' onClick={handleClose}>Cancel</Button>
+                <Button className='ssc_text_field' onClick={handleClose}>Yes</Button>
             </DialogActions>
         </Dialog>
     )
